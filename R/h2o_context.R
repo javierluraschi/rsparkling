@@ -1,14 +1,14 @@
 #' Get the H2OContext. Will create the context if it has not been previously created.
 #'
 #' @param x Object of type \code{spark_connection} or \code{spark_jobj}.
-#' @param strict_version_check (Optional) Setting this to FALSE does not cross check version of H2O and attempts to connect.
+#' @param strict_version_check (Optional) Setting this to TRUE performs an strinct version check of H2O.
 #' @export
-h2o_context <- function(x, strict_version_check = TRUE) {
+h2o_context <- function(x, strict_version_check = FALSE) {
   UseMethod("h2o_context")
 }
 
 #' @export
-h2o_context.spark_connection <- function(x, strict_version_check = TRUE) {
+h2o_context.spark_connection <- function(x, strict_version_check = FALSE) {
   hc <- invoke_static(x, "org.apache.spark.h2o.H2OContext", "getOrCreate", spark_context(x))
   ip <- invoke(hc, "h2oLocalClientIp")
   port <- invoke(hc, "h2oLocalClientPort")
@@ -17,7 +17,7 @@ h2o_context.spark_connection <- function(x, strict_version_check = TRUE) {
 }
 
 #' @export
-h2o_context.spark_jobj <- function(x, strict_version_check = TRUE) {
+h2o_context.spark_jobj <- function(x, strict_version_check = FALSE) {
   h2o_context.spark_connection(spark_connection(x), strict_version_check=strict_version_check)
 }
 
@@ -26,9 +26,9 @@ h2o_context.spark_jobj <- function(x, strict_version_check = TRUE) {
 #' @inheritParams h2o_context
 #'
 #' @param sc Object of type \code{spark_connection}.
-#' @param strict_version_check (Optional) Setting this to FALSE does not cross check version of H2O and attempts to connect.
+#' @param strict_version_check (Optional) Setting this to TRUE performs an strinct version check of H2O.
 #' @export
-h2o_flow <- function(sc, strict_version_check = TRUE) {
+h2o_flow <- function(sc, strict_version_check = FALSE) {
   flow <- invoke(h2o_context(sc, strict_version_check = strict_version_check), "h2oLocalClient")
   browseURL(paste0("http://", flow))
 }
@@ -38,9 +38,9 @@ h2o_flow <- function(sc, strict_version_check = TRUE) {
 #' @param sc Object of type \code{spark_connection}.
 #' @param x A \code{spark_dataframe}.
 #' @param name The name of the H2OFrame.
-#' @param strict_version_check (Optional) Setting this to FALSE does not cross check version of H2O and attempts to connect.
+#' @param strict_version_check (Optional) Setting this to TRUE performs an strinct version check of H2O.
 #' @export
-as_h2o_frame <- function(sc, x, name=NULL, strict_version_check=TRUE) {
+as_h2o_frame <- function(sc, x, name=NULL, strict_version_check=FALSE) {
   # sc is not actually required since the sc is monkey-patched into the Spark DataFrame
   # it is kept as an argument for API consistency
 
@@ -64,9 +64,9 @@ as_h2o_frame <- function(sc, x, name=NULL, strict_version_check=TRUE) {
 #' @param sc Object of type \code{spark_connection}.
 #' @param x An \code{H2OFrame}.
 #' @param name The name to assign the data frame in Spark.
-#' @param strict_version_check (Optional) Setting this to FALSE does not cross check version of H2O and attempts to connect.
+#' @param strict_version_check (Optional) Setting this to TRUE performs an strinct version check of H2O.
 #' @export
-as_spark_dataframe <- function(sc, x, name = paste(deparse(substitute(x)), collapse=""), strict_version_check=TRUE) {
+as_spark_dataframe <- function(sc, x, name = paste(deparse(substitute(x)), collapse=""), strict_version_check=FALSE) {
   # TO DO: ensure we are dealing with a H2OFrame
 
   # Get SQLContext

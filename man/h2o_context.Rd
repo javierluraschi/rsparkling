@@ -4,12 +4,12 @@
 \alias{h2o_context}
 \title{Get the H2OContext. Will create the context if it has not been previously created.}
 \usage{
-h2o_context(x, strict_version_check = TRUE)
+h2o_context(x, strict_version_check = FALSE)
 }
 \arguments{
 \item{x}{Object of type \code{spark_connection} or \code{spark_jobj}.}
 
-\item{strict_version_check}{(Optional) Setting this to FALSE does not cross check version of H2O and attempts to connect.}
+\item{strict_version_check}{(Optional) Setting this to TRUE performs an strinct version check of H2O.}
 }
 \description{
 Get the H2OContext. Will create the context if it has not been previously created.

@@ -5,7 +5,7 @@
 \title{Convert an H2O Frame to a Spark DataFrame}
 \usage{
 as_spark_dataframe(sc, x, name = paste(deparse(substitute(x)), collapse = ""),
-  strict_version_check = TRUE)
+  strict_version_check = FALSE)
 }
 \arguments{
 \item{sc}{Object of type \code{spark_connection}.}
@@ -14,7 +14,7 @@ as_spark_dataframe(sc, x, name = paste(deparse(substitute(x)), collapse = ""),
 
 \item{name}{The name to assign the data frame in Spark.}
 
-\item{strict_version_check}{(Optional) Setting this to FALSE does not cross check version of H2O and attempts to connect.}
+\item{strict_version_check}{(Optional) Setting this to TRUE performs an strinct version check of H2O.}
 }
 \description{
 Convert an H2O Frame to a Spark DataFrame

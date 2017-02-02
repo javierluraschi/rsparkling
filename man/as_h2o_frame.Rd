@@ -4,7 +4,7 @@
 \alias{as_h2o_frame}
 \title{Convert a Spark DataFrame to an H2O Frame}
 \usage{
-as_h2o_frame(sc, x, name = NULL, strict_version_check = TRUE)
+as_h2o_frame(sc, x, name = NULL, strict_version_check = FALSE)
 }
 \arguments{
 \item{sc}{Object of type \code{spark_connection}.}
@@ -13,7 +13,7 @@ as_h2o_frame(sc, x, name = NULL, strict_version_check = TRUE)
 
 \item{name}{The name of the H2OFrame.}
 
-\item{strict_version_check}{(Optional) Setting this to FALSE does not cross check version of H2O and attempts to connect.}
+\item{strict_version_check}{(Optional) Setting this to TRUE performs an strinct version check of H2O.}
 }
 \description{
 Convert a Spark DataFrame to an H2O Frame

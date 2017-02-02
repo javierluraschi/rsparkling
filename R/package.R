@@ -21,14 +21,14 @@ spark_dependencies <- function(spark_version, scala_version, ...) {
       #Get latest Sparkling Water release for Spark 2.0.*
       latest = read.table("http://s3.amazonaws.com/h2o-release/sparkling-water/rel-2.0/latest")
       sw_version = sprintf("2.0.%s",latest)
-      cat(sprintf("Spark version %s detected. Will call latest Sparkling Water version %s",spark_version,sw_version))
-      cat('\nEnsure H2O version 3.10.1.2 is installed. To install simply call install_h2o(release_name = "rel-turnbull",release_number = "2")')
+      message(sprintf("Spark version %s detected. Will call latest Sparkling Water version %s",spark_version,sw_version))
+      message('\nEnsure H2O version 3.10.1.2 is installed. To install simply call install_h2o(release_name = "rel-turnbull",release_number = "2")')
     }else if(as.package_version(spark_version)$major == "1" && as.package_version(spark_version)$minor == "6" ){ #Assuming Spark 1.6
       #Get latest Sparkling Water release for Spark 1.6.*
       latest = read.table("http://s3.amazonaws.com/h2o-release/sparkling-water/rel-1.6/latest")
       sw_version = sprintf("1.6.%s",latest) 
-      cat(sprintf("Spark version %s detected. Will call latest Sparkling Water version %s",spark_version,sw_version))
-      cat('\nEnsure H2O version 3.10.0.7 is installed. To install simply call install_h2o(release_name = "rel-turing",release_number = "7")')
+      message(sprintf("Spark version %s detected. Will call latest Sparkling Water version %s",spark_version,sw_version))
+      message('\nEnsure H2O version 3.10.0.7 is installed. To install simply call install_h2o(release_name = "rel-turing",release_number = "7")')
     }else{
       stop("Spark installation 1.6.* or 2.0.* are not detected. Please install Spark 2.0.* or 1.6.*")
     }

@@ -7,6 +7,7 @@
 #' #Install the latest release of H2O on 1/30/16 (relv-tverberg-1)
 #' install_h2o(release_name = "rel-tverberg", release_number = "1")
 #' }
+#' @importFrom utils install.packages installed.packages remove.packages
 #' @export
 
 install_h2o <- function(release_name = "rel-tverberg", release_number = "1"){
