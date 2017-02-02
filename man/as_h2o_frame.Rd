@@ -4,7 +4,8 @@
 \alias{as_h2o_frame}
 \title{Convert a Spark DataFrame to an H2O Frame}
 \usage{
-as_h2o_frame(sc, x, name = NULL, strict_version_check = TRUE)
+as_h2o_frame(sc, x, name = NULL,
+  strict_version_check = getOption("rsparkling.strict_version_check", TRUE))
 }
 \arguments{
 \item{sc}{Object of type \code{spark_connection}.}

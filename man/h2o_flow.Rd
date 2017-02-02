@@ -4,7 +4,8 @@
 \alias{h2o_flow}
 \title{Open the H2O Flow UI in a browser}
 \usage{
-h2o_flow(sc, strict_version_check = TRUE)
+h2o_flow(sc,
+  strict_version_check = getOption("rsparkling.strict_version_check", TRUE))
 }
 \arguments{
 \item{sc}{Object of type \code{spark_connection}.}

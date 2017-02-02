@@ -5,7 +5,7 @@
 \title{Convert an H2O Frame to a Spark DataFrame}
 \usage{
 as_spark_dataframe(sc, x, name = paste(deparse(substitute(x)), collapse = ""),
-  strict_version_check = TRUE)
+  strict_version_check = getOption("rsparkling.strict_version_check", TRUE))
 }
 \arguments{
 \item{sc}{Object of type \code{spark_connection}.}

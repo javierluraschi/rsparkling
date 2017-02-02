@@ -4,7 +4,8 @@
 \alias{h2o_context}
 \title{Get the H2OContext. Will create the context if it has not been previously created.}
 \usage{
-h2o_context(x, strict_version_check = TRUE)
+h2o_context(x,
+  strict_version_check = getOption("rsparkling.strict_version_check", TRUE))
 }
 \arguments{
 \item{x}{Object of type \code{spark_connection} or \code{spark_jobj}.}
